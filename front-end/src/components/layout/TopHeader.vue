@@ -8,10 +8,12 @@
                 <a class="navbar-brand" href="#">Hidden brand</a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <!-- <a class="nav-link" href="/creator">Home <span class="sr-only">(current)</span></a> -->
+                        <router-link class="nav-link" to="/creator">Creator <span class="sr-only">(current)</span></router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <!-- <a class="nav-link" href="/creator/list">List</a> -->
+                        <router-link class="nav-link" to="/creator/list">List</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
@@ -34,3 +36,8 @@ export default {
     }
 };
 </script>
+<style>
+#nav {
+    padding: 0;
+}
+</style>
