@@ -1,8 +1,6 @@
 <template>
     <div class="PrimaryLayout">
-        <!-- <TopHeader /> -->
         <SideNav />
-        <router-view />
     </div>
 </template>
 
@@ -12,7 +10,6 @@ import SideNav from "../components/layout/SideNav";
 export default {
     name: "PrimaryLayout",
     components: {
-        // TopHeader,
         SideNav
     }
 };
