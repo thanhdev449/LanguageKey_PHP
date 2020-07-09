@@ -1,20 +1,25 @@
 <template>
-    <div class="">
+    <div class="creator-table">
         <div class="row">
             <div class="col-2">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="float-left">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                <div class="card text-black bg-light">
+                    <div class="card-header"><b>List Admin</b></div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="float-left">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" class="float-left">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                            <button type="submit" class="btn btn-primary float-left">Submit</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1" class="float-left">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <button type="submit" class="btn btn-primary float-left">Submit</button>
-                </form>
+                </div>
             </div>
-            <div class="table-list col-9">
+            <div class="table-list col-10">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -35,7 +40,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Shanny Monahanadsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsds</td>
+                            <td>Shanny ssssssssssssssss</td>
                             <td>Shanny Monahan</td>
                             <td>Shanny Monahan</td>
                             <td>Shanny Monahan</td>
@@ -62,12 +67,16 @@ export default {
 };
 </script>
 <style>
-.table-list {
-    position: relative;
-    overflow-x: scroll;
+.creator-table {
+    overflow: hidden;
 }
 
-.table {
-    position: absolute;
+.table-list {
+    position: relative;
+    overflow: auto;
 }
+
+/* table {
+    overflow: scroll;
+} */
 </style>
