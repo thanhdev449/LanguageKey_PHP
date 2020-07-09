@@ -15,7 +15,7 @@ const routes = [
         path: "/creator",
         name: "Creator",
         component: PrimaryLayout,
-        children: [{ path: "list", name: "ListCreator", component: () => import("../components/Creator/List.vue") }]
+        children: [{ path: "list", name: "ListCreator", component: () => import("../components/creator/List.vue") }]
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.

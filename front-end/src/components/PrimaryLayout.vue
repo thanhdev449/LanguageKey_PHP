@@ -19,4 +19,8 @@ export default {
 #nav {
     padding: 0;
 }
+.PrimaryLayout {
+    position: relative;
+    overflow: hidden;
+}
 </style>
