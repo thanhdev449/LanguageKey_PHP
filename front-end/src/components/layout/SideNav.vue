@@ -246,9 +246,10 @@ a.article:hover {
 ----------------------------------------------------- */
 #content {
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
     min-height: 100vh;
     transition: all 0.3s;
+    overflow: hidden;
 }
 
 #sidebarCollapse {
@@ -287,6 +288,11 @@ a.article:hover {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    /* .cona */
+}
+
 /* @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;

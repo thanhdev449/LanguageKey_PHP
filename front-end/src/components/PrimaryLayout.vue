@@ -21,6 +21,6 @@ export default {
 }
 .PrimaryLayout {
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 </style>
