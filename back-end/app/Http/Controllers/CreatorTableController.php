@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CreatorTable;
 use Illuminate\Http\Request;
+use Validator;
 
 class CreatorTableController extends Controller
 {
@@ -15,12 +16,22 @@ class CreatorTableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $dataRes = CreatorTable::list();
-            $this->data = $dataRes;
-            $this->success = true;
+            $inputs = $request->all();
+            $validators = Validator::make($request->all(),[
+                'full_name' => 'string|max:255',
+                'email'     => 'string|max:255',
+                'address'   => 'string|max:255',
+            ]);
+            if ($validators->fails()) {
+                $this->error = $validators->errors()->first();
+            }else{
+                $dataRes = CreatorTable::listAndFind($inputs);
+                $this->data = $dataRes;
+                $this->success = true;
+            }
         } catch (\Illuminate\Database\QueryException $ex) {
             \Log::error("[" . __METHOD__ . "][" . __LINE__ . "]" . "error" . $ex->getMessage());
             $this->error = $ex->getMessage();

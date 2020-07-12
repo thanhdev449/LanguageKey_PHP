@@ -5,7 +5,9 @@
                 <div class="row">
                     <div class="col-lg-2 form-search">
                         <div class="card text-black bg-light">
-                            <div class="card-header"><b>List Admin</b></div>
+                            <div class="card-header">
+                                <b>{{ title }}</b>
+                            </div>
                             <div class="card-body">
                                 <form>
                                     <div class="form-group">
@@ -20,7 +22,7 @@
                                         <label for="address" class="float-left">Address</label>
                                         <input type="text" class="form-control" id="address" placeholder="Address" />
                                     </div>
-                                    <button type="submit" class="btn btn-sm btn-primary float-right">Submit</button>
+                                    <button type="button" class="btn btn-sm btn-primary float-right" v-on:click="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -30,11 +32,8 @@
                             <thead>
                                 <tr>
                                     <th>FullName</th>
-                                    <th>UserName</th>
                                     <th>Email</th>
                                     <th>Birthday</th>
-                                    <th>Avatar</th>
-                                    <th>Address</th>
                                     <th>Country</th>
                                     <th>Score</th>
                                     <th>words</th>
@@ -42,88 +41,12 @@
                                     <th>Subcriber</th>
                                     <th>Follower</th>
                                     <th>Role</th>
+                                    <th>Avatar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                </tr>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                </tr>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                </tr>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                </tr>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                </tr>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
                                     <td>Shanny Monahan</td>
                                     <td>Shanny Monahan</td>
                                     <td>Shanny Monahan</td>
@@ -158,8 +81,22 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    name: "ListCreator"
+    name: "ListCreator",
+    props: "",
+    data: function() {
+        return {
+            title: " Action with Creator "
+        };
+    },
+    methods: {
+        submit() {
+            axios.get("https://localhost:8080/api/creator/list").then(res => {
+                console.log(res.data);
+            });
+        }
+    }
 };
 </script>
 <style>
