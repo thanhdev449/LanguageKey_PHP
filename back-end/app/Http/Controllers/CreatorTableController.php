@@ -21,9 +21,9 @@ class CreatorTableController extends Controller
         try {
             $inputs = $request->all();
             $validators = Validator::make($request->all(),[
-                'full_name' => 'string|max:255',
-                'email'     => 'string|max:255',
-                'address'   => 'string|max:255',
+                'full_name' => 'max:255',
+                'email'     => 'max:255',
+                'country'   => 'max:255',
             ]);
             if ($validators->fails()) {
                 $this->error = $validators->errors()->first();

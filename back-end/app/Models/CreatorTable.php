@@ -10,7 +10,7 @@ class CreatorTable extends Model
     protected $fillable = ["full_name","user_name","email","password","birthday","avatar","address","country","score","words","level","subcriber","follower","role","is__deleted"];
 
     public static function listAndFind($params){
-        $a_creator = CreatorTable::select("full_name","user_name","email","avatar","address","country","score","words","level","subcriber","follower","role")
+        $a_creator = CreatorTable::select("id","full_name","user_name","email","birthday","avatar","address","country","score","words","level","subcriber","follower","role")
                                   ->where("is_deleted",0);
         if (isset($params['full_name']) && !empty($params['full_name'])) {
             $a_creator->where('full_name','like',"%".$params['full_name']."%");
@@ -18,8 +18,8 @@ class CreatorTable extends Model
         if (isset($params['email']) && !empty($params['email'])) {
             $a_creator->where('email','like',"%".$params['email']."%");
         }
-        if (isset($params['address']) && !empty($params['address'])) {
-           $a_creator->where('address','like',"%".$params['address']."%");
+        if (isset($params['country']) && !empty($params['country'])) {
+           $a_creator->where('country','like',"%".$params['country']."%");
         }
         return $a_creator->orderBy('id','asc')
                          ->paginate(isset($params['page_limit']) ? $params['page_limit'] : 5);

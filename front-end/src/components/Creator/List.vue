@@ -12,15 +12,15 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="fullName" class="float-left">FullName</label>
-                                        <input type="text" class="form-control" id="fullName" aria-describedby="emailHelp" placeholder="full name" />
+                                        <input type="text" class="form-control" id="fullName" v-model="params.fullName" aria-describedby="emailHelp" placeholder="full name" />
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="float-left">Email</label>
-                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email" />
+                                        <input type="email" class="form-control" id="email" v-model="params.email" aria-describedby="emailHelp" placeholder="email" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="address" class="float-left">Address</label>
-                                        <input type="text" class="form-control" id="address" placeholder="Address" />
+                                        <label for="address" class="float-left">Country</label>
+                                        <input type="text" class="form-control" id="address" v-model="params.country" placeholder="country" />
                                     </div>
                                     <button type="button" class="btn btn-sm btn-primary float-right" v-on:click="submit">Submit</button>
                                 </form>
@@ -45,18 +45,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Shanny sssssss</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
-                                    <td>Shanny Monahan</td>
+                                <tr v-for="item of resData" v-bind:key="item.id">
+                                    <td>{{ item.full_name }}</td>
+                                    <td>{{ item.email }}</td>
+                                    <td>{{ item.birthday }}</td>
+                                    <td>{{ item.country }}</td>
+                                    <td>{{ item.score }}</td>
+                                    <td>{{ item.words }}</td>
+                                    <td>{{ item.level }}</td>
+                                    <td>{{ item.subcriber }}</td>
+                                    <td>{{ item.follower }}</td>
+                                    <td>{{ item.role }}</td>
+                                    <td>{{ item.avatar == null ? "" : item.avatar }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -81,20 +81,37 @@
 </template>
 
 <script>
-import axios from "axios";
+import { ResfullServiceFactory } from "./../../shared/service/ResfullServiceFactory";
+const resApi = ResfullServiceFactory.get("creator");
 export default {
     name: "ListCreator",
     props: "",
     data: function() {
         return {
-            title: " Action with Creator "
+            title: " Action with Creator ",
+            resData: [],
+            params: {
+                email: "",
+                fullName: "",
+                country: ""
+            }
         };
     },
     methods: {
-        submit() {
-            axios.get("https://localhost:8080/api/creator/list").then(res => {
-                console.log(res.data);
-            });
+        async submit() {
+            resApi
+                .listandFindCreator(this.params)
+                .then(res => {
+                    if (res.data.success) {
+                        this.resData = res.data.data.data;
+                        console.log(this.resData);
+                    } else {
+                        alert(res.data.error);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 };
