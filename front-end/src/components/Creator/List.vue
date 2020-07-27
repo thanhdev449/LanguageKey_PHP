@@ -63,7 +63,8 @@
                     </div>
                 </div>
             </div>
-            <nav aria-label="Page navigation pagination-list">
+            <b-pagination v-if="resData.length > 0" v-model="currentPage" :total-rows="rows" :per-page="params.pageLimit" aria-controls="my-table"></b-pagination>
+            <!-- <nav aria-label="Page navigation pagination-list">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -75,7 +76,7 @@
                         <a class="page-link" href="#">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </div>
 </template>
@@ -93,18 +94,25 @@ export default {
             params: {
                 email: "",
                 fullName: "",
-                country: ""
-            }
+                country: "",
+                pageLimit: 5
+            },
+            currentPage: 1,
+            lastPage: 0
         };
     },
+    mounted() {
+        console.log("first");
+    },
     methods: {
-        async submit() {
+        submit() {
             resApi
                 .listandFindCreator(this.params)
                 .then(res => {
                     if (res.data.success) {
                         this.resData = res.data.data.data;
-                        console.log(this.resData);
+                        this.lastPage = res.data.data.last_page;
+                        console.log(res.data.data);
                     } else {
                         alert(res.data.error);
                     }
@@ -139,6 +147,7 @@ export default {
 .card-body {
     padding: 1.25rem 0.5rem;
 }
+
 /* table {
     overflow: scroll;
 } */
