@@ -1,0 +1,7 @@
+{
+    "name": "languagekey/googlesheetapi",
+    "license": "1.0.0",
+    "require": {
+        "google/apiclient": "^1.0"
+    }
+}
